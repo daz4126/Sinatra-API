@@ -123,13 +123,19 @@ $ bundle exec rackup
 [2013-08-29 13:27:36] INFO  WEBrick::HTTPServer#start: pid=4188 port=9292
 
 
-$ heroku create factorizor
+$ heroku create
 $ git push heroku master
 
 Continuous Integration with Travis
 ---------------------------------------
+gem install travis
+
 
 travis init ruby --rvm 2.0.0
+
+git add .travis.yaml
+git commit -m 'set up travis'
+git push origin master
 
 
  
