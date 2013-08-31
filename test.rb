@@ -22,21 +22,16 @@ describe "Factorizor" do
   it "should say that 10 is not prime" do
     refute 10.prime?
   end
-
-  it "should return the factors of 6 as json" do
-    get '/factors/6'
-    assert_equal 6.factors.to_json, last_response.body
-  end
   
   it "should return json" do
-    get '/info/6'
-    assert_equal last_response.headers['Content-Type'], 'application/json;charset=utf-8'
+    get '/6'
+    last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
   end 
  
-  it "should return info about 6 as json" do
-    get '/info/6'
-    six_info = { factors: 6.factors, odd: false, even: true, prime: false }
-    assert_equal six_info.to_json, last_response.body
+  it "should return the correct info about 6 as json" do
+    get '/6'
+    six_info = { factors: 6.factors, odd: 6.odd?, even: 6.even?, prime: 6.prime? }
+    six_info.to_json.must_equal last_response.body
   end
 
 end
